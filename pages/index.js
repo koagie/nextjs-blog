@@ -1,11 +1,23 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import Layout from '../components/Layout'
+import Head from 'next/head';
+import Image from 'next/image';
+import styles from '../styles/Home.module.css';
+import Layout from '../components/Layout';
 
-import Link from "next/link"
-import utilStyle from "../styles/utils.module.scss"
+import Link from "next/link";
+import utilStyle from "../styles/utils.module.scss";
+import { getPostsData } from "../lib/post.jsx";
 
+//SSG => Take data only once from the outside
+export async function getStaticProps() {
+  const allPostsData = getPostsData(); //id, title, date, thumbnail
+  console.log(allPostsData);
+
+  return {
+    props: {
+      allPostsData,
+    }
+  }
+}
 
 export default function home() {
   return (
