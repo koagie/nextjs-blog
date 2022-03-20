@@ -1,5 +1,5 @@
 import Layout from "../../components/Layout"
-import { getAllPostIds } from "../../lib/post";
+import { getAllPostIds, getPostData } from "../../lib/post";
 
 // async = 非同期処理  getStaticPathsでpathを設定
 export async function getStaticPaths() {
@@ -12,10 +12,23 @@ export async function getStaticPaths() {
   }
 }
 
-export function getStaticProps({ params }) {
-  
+//getPostDataはpost.jsxで非同期処理で行うためawait 必要
+export async function getStaticProps({ params }) {
+  const postData = await getPostData(params.id);
+
+  return {
+    props: {
+      postData,
+    },
+  };
 }
 
-export default function Post() {
-  return  <Layout>動的ルーティング設定</Layout>;
+export default function Post({ postData }) {
+  return  <Layout>
+    {postData.title}
+    <br />
+    {postData.date}
+    <br />
+    {postData.blogContentHTML}
+    </Layout>;
 }
