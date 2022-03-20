@@ -6,6 +6,7 @@ import Layout from '../components/Layout'
 import Link from "next/link"
 import utilStyle from "../styles/utils.module.scss"
 
+
 export default function home() {
   return (
     <Layout>
