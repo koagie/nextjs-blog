@@ -1,5 +1,9 @@
 import Layout from "../../components/Layout"
 import { getAllPostIds, getPostData } from "../../lib/post";
+import utilStyles from "../../styles/utils.module.scss"
+//htmlをサニタイズする
+import DOMPurify from "dompurify";
+
 
 // async = 非同期処理  getStaticPathsでpathを設定
 export async function getStaticPaths() {
@@ -24,11 +28,17 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Post({ postData }) {
-  return  <Layout>
-    {postData.title}
-    <br />
-    {postData.date}
-    <br />
-    {postData.blogContentHTML}
-    </Layout>;
+  return (
+    <Layout>
+      <article>
+        <h1 className="{utilStyles.headingX1">{postData.title}</h1>
+        <div className="utilStyles.lightText">{postData.date}</div>
+        <div dangerouslySetInnerHTML={{
+          //サニタイズ必須
+          // __html: DOMPurify.sanitize(postData.blogContentHTML)
+          __html: postData.blogContentHTML
+        }}/>
+      </article>
+    </Layout>
+  ) 
 }
