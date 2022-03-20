@@ -29,6 +29,17 @@ export function getPostsData() {
   return allPostsData;
 }
 
+//getStaticPath returnで誓うApathを取得する
+export function getAllPostIds() {
+  const fileNames = fs.readdirSync(postsDirectory);
+  return fileNames.map((fileName) => {
+    return {
+      params: {
+        id: fileName.replace(/\.md$/, ""),
+      },
+    };
+  });
+}
 
 //SSR example　リエストが多くある場合、外部データを取り扱う場合はこっちが必要
 // export function getPostsData() {

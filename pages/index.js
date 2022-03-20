@@ -56,7 +56,7 @@ export default function home({ allPostsData }) {
 
 
 
-//SSR example　リクエストが多くある場合、外部データを取り扱う場合はこっちが必要
+//SSR example　リエストが多くある場合、外部データを取り扱う場合はこっちが必要
 // export async getServerSideProps(context) {
 //   return (
 //     props: {
