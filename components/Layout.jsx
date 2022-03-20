@@ -17,12 +17,12 @@ function Layout({children, home}) {
       <header className={styles.header}>
         {home ? (
           <>
-            <img className={`${utilStyles.borderCircle} ${styles.headerHomeImage}`} src="/images/kogi.jpg" />
+            {/* <img className={`${utilStyles.borderCircle} ${styles.headerHomeImage}`} src="/images/kogi.jpg" /> */}
             <h1 className={utilStyles.heading2Xl}>{ name }</h1>
           </>
         ) : (
           <>
-            <img className={utilStyles.borderCircle} src="/images/kogi.jpg" />
+            {/* <img className={utilStyles.borderCircle} src="/images/kogi.jpg" /> */}
             <h1 className={utilStyles.heading2Xl}>{ name }</h1>
           </>
         )}
