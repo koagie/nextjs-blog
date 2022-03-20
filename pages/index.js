@@ -19,72 +19,33 @@ export async function getStaticProps() {
   }
 }
 
-export default function home() {
+export default function home({ allPostsData }) {
   return (
     <Layout>
-      <section className={utilStyle.headingMd}>
+      <section className={`${utilStyle.headingMd} ${utilStyle.padding1px}`}>
         <p>
         フルスタックエンジニアのkogiです。
         </p>
       </section>
+
       <section>
-        <h2>kogiblo</h2>
         <div className={styles.grid}>
+          {allPostsData.map(({ id, title, date, thumbnail }) => (
+            <article key={id}>
+              {/* blog image */}
+              <Link href={`/posts/${id}`}>
+                <img src={`${thumbnail}`}  className={styles.thumbnailImage} />
+              </Link>
+              {/* blog title */}
+              <Link href={`/posts/${id}`}>
+                <a className={utilStyle.boldText}>{title}</a>
+              </Link>
+              <br />
+              {/* date */}
+              <small className={utilStyle.lightText}>{date}</small>
+            </article>
+          ))}
           <article>
-            {/* blog image */}
-            <Link href="/">
-            <img src="/images/thumbnail01.jpg"  className={styles.thumbnailImage} />
-            </Link>
-            {/* blog title */}
-            <Link href="/">
-              <a className={utilStyle.boldText}>title01title01title01</a>
-            </Link>
-            <br />
-            <small className={utilStyle.lightText}>
-              2022.02.23
-            </small>
-          </article>
-          <article>
-            {/* blog image */}
-            <Link href="/">
-            <img src="/images/thumbnail01.jpg"  className={styles.thumbnailImage} />
-            </Link>
-            {/* blog title */}
-            <Link href="/">
-              <a className={utilStyle.boldText}>title01title01title01</a>
-            </Link>
-            <br />
-            <small className={utilStyle.lightText}>
-              2022.02.23
-            </small>
-          </article>
-          <article>
-            {/* blog image */}
-            <Link href="/">
-            <img src="/images/thumbnail01.jpg"  className={styles.thumbnailImage} />
-            </Link>
-            {/* blog title */}
-            <Link href="/">
-              <a className={utilStyle.boldText}>title01title01title01</a>
-            </Link>
-            <br />
-            <small className={utilStyle.lightText}>
-              2022.02.23
-            </small>
-          </article>
-          <article>
-            {/* blog image */}
-            <Link href="/">
-            <img src="/images/thumbnail01.jpg"  className={styles.thumbnailImage} />
-            </Link>
-            {/* blog title */}
-            <Link href="/">
-              <a className={utilStyle.boldText}>title01title01title01</a>
-            </Link>
-            <br />
-            <small className={utilStyle.lightText}>
-              2022.02.23
-            </small>
           </article>
         </div>
       </section>
@@ -92,3 +53,14 @@ export default function home() {
 
   );
 }
+
+
+
+//SSR example　リクエストが多くある場合、外部データを取り扱う場合はこっちが必要
+// export async getServerSideProps(context) {
+//   return (
+//     props: {
+//       //コンポーネントに渡すためのprops これがallPostsDataへ送られる
+//     }
+//   )
+// }

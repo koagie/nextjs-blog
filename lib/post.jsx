@@ -21,10 +21,16 @@ export function getPostsData() {
     return {
       id,
       // ...~~~ = Spread syntax
-      //.data必要
+      //.dataが必要
       ...matterResult.data,
     };
   });
   //getPostsData関数の返り値
   return allPostsData;
 }
+
+
+//SSR example　リエストが多くある場合、外部データを取り扱う場合はこっちが必要
+// export function getPostsData() {
+//   const fetchData = await fetch("endpoint");
+// }
