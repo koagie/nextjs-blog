@@ -26,7 +26,7 @@ export default function home({ allPostsData }) {
       </Head>
       <section className={`${utilStyle.headingMd} ${utilStyle.padding1px}`}>
         <p>
-          I'm Kogi. This "jamstack blog" was made by next.js.
+          I&apos;m Kogi. This &quot;jamstack blog&quot; was made by next.js.
         </p>
       </section>
 
